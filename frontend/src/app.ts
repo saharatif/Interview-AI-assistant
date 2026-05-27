@@ -87,15 +87,13 @@ export class InterviewApp extends LitElement {
       <div class="space-y-2">
         <div class="flex items-center justify-between">
           <label class="text-sm font-medium text-slate-200">${opts.label}</label>
-          ${this.tikaAvailable ? html`
-            <button
-              type="button"
-              class="text-xs text-sky-400 hover:text-sky-300 transition"
-              @click=${opts.onToggle}
-            >
-              ${opts.uploadMode ? 'Switch to paste' : 'Upload file'}
-            </button>
-          ` : ''}
+          <button
+            type="button"
+            class="text-xs text-sky-400 hover:text-sky-300 transition"
+            @click=${opts.onToggle}
+          >
+            ${opts.uploadMode ? 'Switch to paste' : 'Upload file'}
+          </button>
         </div>
 
         ${opts.uploadMode ? html`
@@ -106,7 +104,7 @@ export class InterviewApp extends LitElement {
             <input
               id="input-${opts.label}"
               type="file"
-              accept=".pdf,.docx,.md,.txt,text/plain"
+              accept=${this.tikaAvailable ? '.pdf,.docx,.md,.txt,text/plain' : '.md,.txt,text/plain'}
               class="hidden"
               @change=${(e: Event) => {
                 const f = (e.target as HTMLInputElement).files?.[0] ?? null;
@@ -119,7 +117,7 @@ export class InterviewApp extends LitElement {
             ` : html`
               <span class="text-3xl mb-2">📄</span>
               <span class="text-sm">Click to choose a file</span>
-              <span class="text-xs mt-1">PDF, DOCX, MD, TXT</span>
+              <span class="text-xs mt-1">${this.tikaAvailable ? 'PDF, DOCX, MD, TXT' : 'MD, TXT (PDF/DOCX requires Tika)'}</span>
             `}
           </div>
         ` : html`
@@ -168,9 +166,6 @@ export class InterviewApp extends LitElement {
           >
             Start interview
           </button>
-          ${!this.tikaAvailable ? html`
-            <span class="text-xs text-slate-500">File uploads require Apache Tika — paste mode only</span>
-          ` : ''}
         </div>
       </section>
     `;
