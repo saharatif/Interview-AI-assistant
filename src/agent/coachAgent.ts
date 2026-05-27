@@ -1,4 +1,5 @@
 import { voice, llm } from '@livekit/agents';
+import * as deepgramPlugin from '@livekit/agents-plugin-deepgram';
 import * as openaiPlugin from '@livekit/agents-plugin-openai';
 import OpenAI from 'openai';
 
@@ -95,7 +96,7 @@ export class CoachAgent extends voice.Agent {
   constructor(opts: CoachAgentOptions) {
     super({
       instructions: buildInstructions(opts.jobDescription, opts.resumeText),
-      stt: new openaiPlugin.STT(),
+      stt: new deepgramPlugin.STT({ model: 'nova-3', endpointing: 1200 }),
       llm: new openaiPlugin.LLM({ model: 'gpt-4o', temperature: 0.7 }),
       tts: new openaiPlugin.TTS({ model: 'tts-1', voice: 'alloy' }),
       tools: {
