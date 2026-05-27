@@ -17,6 +17,7 @@
   },
   "include": [
     "server/src",
-    "frontend/src"
+    "frontend/src",
+    "src"
   ]
 }

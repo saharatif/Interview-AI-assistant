@@ -5,6 +5,7 @@ Track development milestones, decisions, and status per module.
 ---
 
 ## Legend
+
 - [ ] Not started
 - [~] In progress
 - [x] Complete
@@ -13,6 +14,7 @@ Track development milestones, decisions, and status per module.
 ---
 
 ## Module 1 — Project Setup & Web Service
+
 - [ ] Repo & pnpm workspace initialized
 - [ ] TypeScript configured for server and frontend
 - [ ] `.env.example` created with all variables
@@ -31,9 +33,10 @@ Track development milestones, decisions, and status per module.
 ---
 
 ## Module 2 — Agent Worker (Voice AI)
-- [ ] Agent entry point and LiveKit worker registration
-- [ ] `download-files` command for VAD model weights
-- [ ] `CoachAgent` class with session context fetch
+
+- [~] Agent entry point and LiveKit worker registration
+- [x] `download-files` command for VAD model weights
+- [~] `CoachAgent` class with session context fetch
 - [ ] System prompt injection (job description + resume)
 - [ ] Deepgram Nova-3 STT configured
 - [ ] Cartesia Sonic-2 TTS configured
@@ -44,12 +47,13 @@ Track development milestones, decisions, and status per module.
 - [ ] Summary published to `interview.summary` topic
 - [ ] Session cleanup after interview ends
 
-**Status:** Not started
+**Status:** In progress
 **Notes:**
 
 ---
 
 ## Module 3 — Frontend (Browser UI)
+
 - [ ] Vite + Lit + Tailwind setup
 - [ ] App shell with three-state screen switcher
 - [ ] Pre-session form (paste mode)
@@ -69,6 +73,7 @@ Track development milestones, decisions, and status per module.
 ---
 
 ## Module 4 — Integration, Testing & Production Readiness
+
 - [ ] End-to-end smoke test passing
 - [ ] Env var validation at startup
 - [ ] `AGENT_NAME` mismatch detection
@@ -82,12 +87,16 @@ Track development milestones, decisions, and status per module.
 **Status:** Not started
 **Notes:**
 
+- Basic env validation helpers added in `src/agent/env.ts`; `.env.example` created. Module 2 skeleton updated to validate `AGENT_NAME` and optionally LiveKit creds in dev mode.
+- Demo harness added at `src/agent/demo.ts` which simulates an interview transcript and invokes `endInterview()`; it writes a Markdown summary to `agent_data/` and prints it. OpenAI-based summary is used if `OPENAI_API_KEY` is set.
+- Env validation and LiveKit/STT/TTS integrations remain to be implemented.
+
 ---
 
 ## Decisions Log
 
-| Date | Decision | Reason |
-|------|----------|--------|
+| Date       | Decision                                        | Reason                                             |
+| ---------- | ----------------------------------------------- | -------------------------------------------------- |
 | 2026-05-26 | Use OpenAI key (no Deepgram/Cartesia initially) | Simplify initial setup; swap providers in Module 2 |
 
 ---
