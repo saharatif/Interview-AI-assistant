@@ -1,0 +1,13 @@
+{
+  "name": "interview-ai-assistant",
+  "private": true,
+  "packageManager": "pnpm@9.8.0",
+  "workspaces": [
+    "server",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:server": "pnpm --filter server dev",
+    "dev": "pnpm dev:server"
+  }
+}
